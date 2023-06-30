@@ -1,15 +1,12 @@
-def is_palindrome(n):
-    if n == n[::-1]:
-        return True
+def palindrome(n):
+    if n==n[::-1]:
+        print("yes")
     else:
-        return False
+        print("no")
 
 while True:
-    n = input()
-    if n == "0":
+    n=input()
+    if n=="0":
         break
     else:
-        if is_palindrome(n):
-            print("yes")
-        else:
-            print("no")
+        result=palindrome(n)
