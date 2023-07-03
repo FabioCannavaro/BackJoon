@@ -1,39 +1,46 @@
 import sys
-def arithmetic_mean(numbers, n):
-    total = sum(numbers)
-    
-    return print(round(total / n)) 
-
-def median_value(numbers):
-    numbers.sort()
-    mid=(len(numbers)-1)//2
-    
-    return print(numbers[mid])
-
-def find_mode(numbers):
-    freq_dict = {}
-    for num in numbers:
-        if num in freq_dict:
-            freq_dict[num] += 1
-        else:
-            freq_dict[num] = 1    
-    mode_freq = max(freq_dict.values())
+class StatisticsCalculator:
+    def __init__(self, numbers):
+        self.numbers=numbers
         
-    modes = [num for num, freq in freq_dict.items() if freq == mode_freq]
-    modes.sort()
-    return print(modes[1] if len(modes) > 1 else modes[0])
+    def arithmetic_mean(self):
+        total = sum(self.numbers)
 
-def find_range(numbers):
-    top=max(lst)
-    bot=min(lst)
-    return print(top-bot)
+        return round(total / len(self.numbers))
+
+    def median_value(self):
+        self.numbers.sort()
+        mid=(len(self.numbers)-1)//2
+
+        return self.numbers[mid]
+
+    def find_mode(self):
+        freq_dict = {}
+        for num in self.numbers:
+            if num in freq_dict:
+                freq_dict[num] += 1
+            else:
+                freq_dict[num] = 1
+        
+        mode_freq = max(freq_dict.values())
+
+        modes = [num for num, freq in freq_dict.items() if freq == mode_freq]
+        modes.sort()
+        return modes[1] if len(modes) > 1 else modes[0]
+
+    def find_range(self):
+        top=max(self.numbers)
+        bot=min(self.numbers)
+        return abs(top-bot)
 
 n=int(sys.stdin.readline())
 lst=[]
 for i in range(n):
     num=int(sys.stdin.readline())
     lst.append(num)
-arithmetic_mean(lst, n)
-median_value(lst)
-find_mode(lst)
-find_range(lst)
+calculator = StatisticsCalculator(lst)
+
+print(calculator.arithmetic_mean())
+print(calculator.median_value())
+print(calculator.find_mode())
+print(calculator.find_range())
