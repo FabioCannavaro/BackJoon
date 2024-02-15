@@ -1,12 +1,17 @@
 from collections import deque
 
-n, k=map(int, input().split())
-lst=deque(range(1, n+1))
-res=[]
-while lst:
-    for i in range(k-1):
-        lst.rotate(-1)
-    res.append(lst.popleft())
-    if len(lst)<1:
-        break
-print("<"+", ".join(map(str, res))+">")
+def Josephus(table, k):
+    lst=[]
+    while True:
+        if len(table)>0:
+            table.rotate(-(k-1))
+            lst.append(table.popleft())
+        else:
+            print("<"+", ".join(map(str, lst))+">")
+            break
+        
+N, K=map(int, input().split())
+table=deque()
+for i in range(1, N+1):
+    table.append(i)
+Josephus(table, K)
