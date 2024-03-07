@@ -1,12 +1,8 @@
-from collections import deque
 N, K = map(int, input().split())
 queue=[]
-result=deque()
 for i in range(N):
     W, V = map(int, input().split())
     queue.append([W, V])
-    queue.sort(key=lambda x: x[0])
-queue=deque(queue)
 
 dp=[0]*(K+1)
 
