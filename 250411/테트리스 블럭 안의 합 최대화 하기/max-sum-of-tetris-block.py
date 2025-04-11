@@ -36,12 +36,15 @@ def max_tetromino_sum(board):
         for y in range(m):
             for shape in shapes:
                 total = 0
+                valid = True
                 for dx, dy in shape:
                     nx, ny = x + dx, y + dy
                     if nx < 0 or ny < 0 or nx >= n or ny >= m:
-                        continue
+                        valid = False
+                        break
                     total += board[nx][ny]
-                max_sum = max(max_sum, total)
+                if valid:
+                    max_sum = max(max_sum, total)
 
 
     return max_sum
